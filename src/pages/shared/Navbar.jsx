@@ -2,7 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
 const Navbar = () => {
-  const { user, loading } = React.useContext(AuthContext);
+  const { user, logOut, loading } = React.useContext(AuthContext);
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const links = (
     <>
       <li>
@@ -48,14 +56,16 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <>Logout</>
+          <button onClick={handleSignOut} className="btn">
+            Logout
+          </button>
         ) : (
           <>
             {" "}
             <Link to="/register">Register</Link>
             <Link to="/login">
               {" "}
-              <button className="btn">Button</button>
+              <button className="btn">Login</button>
             </Link>
           </>
         )}
