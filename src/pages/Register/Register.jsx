@@ -1,18 +1,30 @@
+import Lottie from "lottie-react";
 import React from "react";
-
+import reactLottie from "../../assets/lottie/register.json";
 const Register = () => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{6,}$/;
+    if (passwordRegex.test(password)) {
+      console.log(email, password);
+      alert("Password is valid");
+    } else {
+      alert("Password is invalid");
+    }
+  };
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
+        <div className="text-center lg:text-left w-72">
+          <Lottie animationData={reactLottie} loop={true} />
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form className="card-body">
+          <form className="card-body" onSubmit={handleFormSubmit}>
             <h1 className="text-5xl font-bold">Register now!</h1>
             <div className="form-control">
               <label className="label">
@@ -21,6 +33,7 @@ const Register = () => {
               <input
                 type="email"
                 placeholder="email"
+                name="email"
                 className="input input-bordered"
                 required
               />
@@ -32,6 +45,7 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="password"
+                name="password"
                 className="input input-bordered"
                 required
               />
