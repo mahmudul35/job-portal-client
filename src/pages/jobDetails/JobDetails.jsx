@@ -52,8 +52,8 @@ const JobDetails = () => {
               {salaryRange.max} {salaryRange.currency}
             </p>
 
-            <Link to={`/jobs/${_id}`}>
-              <button className="btn btn-primary">Apply</button>
+            <Link to={`/applyJob/${_id}`}>
+              <button className="btn btn-primary">Apply Now</button>
             </Link>
           </div>
         </div>
